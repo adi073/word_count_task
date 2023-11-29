@@ -51,7 +51,6 @@ class Worker:
                     self.state = State.Waiting
 
 if __name__ == "__main__":
-    logging.basicConfig()
     SERVER_ADDRESS = 'localhost:50051'
     worker = Worker()
     worker.process(SERVER_ADDRESS)

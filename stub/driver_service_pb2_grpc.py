@@ -15,17 +15,39 @@ class DriverServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.AskTask = channel.unary_unary(
-                '/word_count_task.DriverService/AskTask',
+        self.GetTask = channel.unary_unary(
+                '/word_count_task.DriverService/GetTask',
                 request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
                 response_deserializer=driver__service__pb2.TaskInfo.FromString,
+                )
+        self.CountAndInitiateReduce = channel.unary_unary(
+                '/word_count_task.DriverService/CountAndInitiateReduce',
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                )
+        self.StopReduce = channel.unary_unary(
+                '/word_count_task.DriverService/StopReduce',
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
 
 
 class DriverServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def AskTask(self, request, context):
+    def GetTask(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def CountAndInitiateReduce(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def StopReduce(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -34,10 +56,20 @@ class DriverServiceServicer(object):
 
 def add_DriverServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'AskTask': grpc.unary_unary_rpc_method_handler(
-                    servicer.AskTask,
+            'GetTask': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetTask,
                     request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                     response_serializer=driver__service__pb2.TaskInfo.SerializeToString,
+            ),
+            'CountAndInitiateReduce': grpc.unary_unary_rpc_method_handler(
+                    servicer.CountAndInitiateReduce,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'StopReduce': grpc.unary_unary_rpc_method_handler(
+                    servicer.StopReduce,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -50,7 +82,7 @@ class DriverService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def AskTask(request,
+    def GetTask(request,
             target,
             options=(),
             channel_credentials=None,
@@ -60,8 +92,42 @@ class DriverService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/word_count_task.DriverService/AskTask',
+        return grpc.experimental.unary_unary(request, target, '/word_count_task.DriverService/GetTask',
             google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             driver__service__pb2.TaskInfo.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def CountAndInitiateReduce(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/word_count_task.DriverService/CountAndInitiateReduce',
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def StopReduce(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/word_count_task.DriverService/StopReduce',
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

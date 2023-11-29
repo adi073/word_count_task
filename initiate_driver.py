@@ -11,9 +11,9 @@ from concurrent import futures
 import time
 
 from google.protobuf.empty_pb2 import Empty
-from driver_service_pb2_grpc import DriverServiceServicer
-from driver_service_pb2_grpc import add_DriverServiceServicer_to_server
-from driver_service_pb2 import TaskInfo, TaskType
+from stub.driver_service_pb2_grpc import DriverServiceServicer
+from stub.driver_service_pb2_grpc import add_DriverServiceServicer_to_server
+from stub.driver_service_pb2 import TaskInfo, TaskType
 
 class DriverService(DriverServiceServicer):
     def __init__(self, N, M):
@@ -103,7 +103,8 @@ def start_server(service, port):
 
 
 if __name__ == "__main__":
-    logging.basicConfig()
+    logging.basicConfig(filename='logger_word_count.log', level=logging.INFO)
+    logging.info('Driver Started')
     parser = argparse.ArgumentParser()
     parser.add_argument('--N', type=int, required=True, help='Number of map tasks')
     parser.add_argument('--M', type=int, required=True, help='number of reduce tasks')

@@ -45,13 +45,15 @@ class Reducer:
         for _file in glob.glob(f'{INTERMEDIATE_DIR}/mr-*-{bucket_id}'):
             with open(_file) as f:
                 for i in f.readlines():
+                    i = i.strip()
                     if i not in self.word_dict:
                         self.word_dict[i] = 1
                     else:
                         self.word_dict[i] += 1
-            with open(f'{OUT_DIR}/out-{bucket_id}', 'a') as f_out:
-                for word, count in self.word_dict.items():
-                    f_out.write(f'{word} - {count}\n')
+        with open(f'{OUT_DIR}/out-{bucket_id}', 'a') as f_out:
+            for word, count in self.word_dict.items():
+                f_out.write(f"{word} {count}\n")
+        self.word_dict = {}
         self.end_reduce()
 
     def end_reduce(self):

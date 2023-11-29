@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package word_count_task;
+
+import "google/protobuf/empty.proto";
+
+service DriverService {
+    rpc GetTask (google.protobuf.Empty) returns (TaskInfo) {}
+
+    rpc CountAndInitiateReduce (google.protobuf.Empty) returns (google.protobuf.Empty) {}
+
+    rpc StopReduce (google.protobuf.Empty) returns (google.protobuf.Empty) {}
+}
+
+enum TaskType {
+    Map = 0;
+    Reduce = 1;
+    Idle = 2;
+    ShutDown = 3;
+}
+
+message TaskInfo {
+    TaskType type = 1;
+    uint32 id = 2;
+    uint32 M = 3;
+    repeated string files = 4;
+}

@@ -1,4 +1,4 @@
-### Distributed Word Count
+# Distributed Word Count
 
 ## Setup venv environment
 `sudo apt install python3-venv` 
@@ -23,15 +23,15 @@
 `python -m grpc_tools.protoc -I proto --python_out=. --grpc_python_out=. proto/driver-service.proto`
 
 ## GRPC API
-### Get_Task
+#### Get_Task
 Worker asks driver for a task and driver returns the following
 - Map Task
 - Reduce Task
 - Idle Task
 - Shutdown Task
 
-### CountAndInitiateReduce
+#### CountAndInitiateReduce
 It counts the number of map tasks completed. If all of them are completed, initiates reduce task.
 
-### StopReduce
+#### StopReduce
 If all reduce tasks are completed, initiate shutdown.

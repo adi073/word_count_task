@@ -1,11 +1,11 @@
 # Distributed Word Count
 
 ## Setup venv environment
-`sudo apt install python3-venv` 
-`which python3`
-`cd word_count_task` 
-`/usr/bin/python3 -m venv venv`
-`source venv/bin/activate`
+`sudo apt install python3-venv`  
+`which python3`  
+`cd word_count_task`  
+`/usr/bin/python3 -m venv venv`  
+`source venv/bin/activate`  
 
 ## Install necessary packages
 `pip3 install -r requirements.txt`

@@ -5,8 +5,8 @@ from enum import Enum
 import grpc
 from google.protobuf.empty_pb2 import Empty
 
-from driver_service_pb2 import TaskType, TaskInfo
-from driver_service_pb2_grpc import DriverServiceStub
+from stub.driver_service_pb2 import TaskType, TaskInfo
+from stub.driver_service_pb2_grpc import DriverServiceStub
 from mapper_reducer import Mapper, Reducer
 
 class State(Enum):

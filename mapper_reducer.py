@@ -6,7 +6,7 @@ import grpc
 import glob
 
 from google.protobuf.empty_pb2 import Empty
-from driver_service_pb2_grpc import DriverServiceStub
+from stub.driver_service_pb2_grpc import DriverServiceStub
 
 INTERMEDIATE_DIR = 'intermediate'
 SERVER_ADDRESS = 'localhost:50051'
